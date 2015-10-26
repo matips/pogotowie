@@ -4,16 +4,22 @@
 
 procedura(nagly_stan_zagrozenia_zycia) :-
 	problem_to(zatrzymanie_krazenia);
-	problem_to(krwiak).
+	problem_to(krwiak);
+	problem_to(zawal).
 
 procedura(stan_powazny) :-
-	podlega(ppm).
+	podlega(ppm); 
+	problem_to(wstrzasienie_mozgu).
 
-procedura(karetka_P).
-procedura(brak_karetki).
-procedura(consulting).
-procedura(policja).
-procerura(straz).
+% procedura(karetka_P).
+procedura(brak_karetki) :-
+	not(chory(zagrozenie_zycia)).
+	
+% procedura(consulting).
+procedura(policja) -:
+	zdarzenie_to(wypadek_samochodowy). 
+	
+% procerura(straz).
 
 zdarzenie_to(wypadek_samochodowy) :-
 	pozytywne(czy, wypadek_samochodowy).
@@ -37,14 +43,38 @@ chory(nieprzytomny) :-
 
 chory(zagrozenie_zycia) :-
 	chory(nieprzytomy),
-	negatywne(odczuwa, nietypwe_dolegliwosci).
+	pozytywne(odczuwa, nietypwe_dolegliwosci).
 
 
 problem_to(zatrzymanie_krazenia) :-
 	chory(nieprzytomny),
 	negatywne(czy, oddycha).
 
+problem_to(wstrzasienie_mozgu) :-
+	pozytywne(odczuwa, bol_glowy), 
+	pozytywne(doznal, urazu), 
+	negatywne(odczuwa, ostry_bol), 
+	pozytywne(odczuwa, nudnosci). 
+	
+problem_to(k2) :-
+	pozytywne(odczuwa, bol_glowy), 
+	negatywne(doznal, urazu), 
+	negatywne(ma, zabuzenia_swiadomosci), 
+	negatywne(ma, zabuzenia_motoryczne). 
+	
+problem_to(krwiak) :-
+	pozytywne(odczuwa, bol_glowy), 
+	pozytywne(doznal, urazu), 
+	pozytywne(odczuwa, ostry_bol), 
+	pozytywne(ma, zabuzenia_swiadomosci), 
+	pozytywne(ma, zabuzenia_motoryczne). 
 
+problem_to(zawal) :-
+	negatywne(doznal, urazu), 
+	pozytywne(odczuwa, bol_klatki), 
+	pozytywne(odczuwa, bol_promieniujacy)
+	pozytywne(oddczuwa, dusznosci)
+	
 podlega(ppm) :-
 	zdarzenie_to(wypadek_samochodowy).
 
@@ -53,8 +83,10 @@ podlega(ppm) :-
 
 podlega(ppm) :-
 	zdarzenie_to(pogorszenie).
-
-
+	
+	
+	
+	
 pozytywne(X, Y) :-
 	xpozytywne(X, Y), !.
 
@@ -70,14 +102,14 @@ negatywne(X, Y) :-
 	pytaj(X, Y, nie).
 
 pytaj(X, Y, tak) :-
-	!, write(X), write(' to_zwierze '), write(Y), write(' ? (t/n)\n'),
+	!, write('Czy chory '), write(X), write(" "), write(Y), write(' ? (t/n)\n'), 
 	readln([Replay]),
 	pamietaj(X, Y, Replay),
 	odpowiedz(Replay, tak).
 
 
 pytaj(X, Y, nie) :-
-	!, write('Czy chory '), write(X),  write(Y), write(' ? (t/n)\n'), 
+	!, write('Czy chory '), write(X), write(" "), write(Y), write(' ? (t/n)\n'), 
 	readln([Replay]),
 	pamietaj(X, Y, Replay),
 	odpowiedz(Replay, nie).
