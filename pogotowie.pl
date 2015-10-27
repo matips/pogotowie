@@ -3,7 +3,7 @@
 :- dynamic([xpozytywne/2, xnegatywne/2]).
 
 procedura(nagly_stan_zagrozenia_zycia) :-
-	problem_to(zatrzymanie_krazenia);
+	problem_to(zatrzymanie_krazenia). 
 	problem_to(krwiak);
 	problem_to(zawal).
 
@@ -37,6 +37,10 @@ zdarzenie_to(niemedyczne) :-
 	negatywne(czy, pogorszenie),
 	negatywne(czy, pogorszenie).
 
+chory(doznal_urazu) :-
+	zdarzenie_to(wypadek_samochodowy);
+	pozytywne(doznal, urazu). 
+	
 chory(nieprzytomny) :-
 	negatywne(reaguje, na_probe_kontaktu),
 	negatywne(reaguje, na_bodzce_dotykowe).
@@ -45,6 +49,9 @@ chory(zagrozenie_zycia) :-
 	chory(nieprzytomy),
 	pozytywne(odczuwa, nietypwe_dolegliwosci).
 
+chory(krawienie_podpajeczynowkowe) :-
+	pozytywne(odczuwa, bol_glowy)
+	pozytywne(odczuwa, najsilenieszy_bol_glowy_w_zyciu).
 
 problem_to(zatrzymanie_krazenia) :-
 	chory(nieprzytomny),
@@ -75,6 +82,27 @@ problem_to(zawal) :-
 	pozytywne(odczuwa, bol_promieniujacy)
 	pozytywne(oddczuwa, dusznosci)
 	
+
+problem_to(nadcisienie_tetnicze) :-
+	negatywne(doznal, urazu), 
+	pozytywne(odczuwa, bol_glowy). 
+	
+problem_to(zapalenie_zatok) :-
+	negatywne(doznal, urazu), 
+	pozytywne(odczuwa, bol_glowy).
+	
+problem_to(migrena) :-
+	negatywne(doznal, urazu), 
+	pozytywne(odczuwa, bol_glowy).
+	
+problem_to(zapalenie_opon) :-
+	negatywne(doznal, urazu), 
+	pozytywne(bol_glowy). 
+	
+problem_to(krwiak_podtwardowkowy) :-
+	pozytywne(doznal, urazu), 
+	
+	
 podlega(ppm) :-
 	zdarzenie_to(wypadek_samochodowy).
 
@@ -82,9 +110,7 @@ podlega(ppm) :-
 	zdarzenie_to(zachorowanie).
 
 podlega(ppm) :-
-	zdarzenie_to(pogorszenie).
-	
-	
+	zdarzenie_to(pogorszenie).	
 	
 	
 pozytywne(X, Y) :-
