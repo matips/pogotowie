@@ -3,28 +3,41 @@
 :- dynamic([xpozytywne/2, xnegatywne/2]).
 
 procedura(nagly_stan_zagrozenia_zycia) :-
-	problem_to(zatrzymanie_krazenia). 
+	problem_to(zatrzymanie_krazenia);
 	problem_to(krwiak);
-	problem_to(zawal).
+	problem_to(zawal);
+	problem_to(tetniak_aorty).
 
 procedura(stan_powazny) :-
 	podlega(ppm); 
-	problem_to(wstrzasienie_mozgu).
+	problem_to(wstrzasienie_mozgu);
+	problem_to(niedroznosc_jelit).
 
-% procedura(karetka_P).
+procedura(stan_powazny) :-
+	problem_to(hipoglikemia),
+	pozytywne(jest, nieprzytomny).
+	
+procedura(karetka_P) :-
+	problem_to(hipoglikemia),
+	negatywne(jest, nieprzytomny).
+		
+procedura(karetka_P) :-
+	problem_to(ostre_zapalenie_wyrostka);
+	problem_to(k2).
+
 procedura(brak_karetki) :-
 	not(chory(zagrozenie_zycia)).
 	
-% procedura(consulting).
-procedura(policja) -:
+procedura(policja) :-
 	zdarzenie_to(wypadek_samochodowy). 
-	
-% procerura(straz).
 
+procedura(stan_powazny) :-
+	chory(nieprzytomny).
+	
 zdarzenie_to(wypadek_samochodowy) :-
 	pozytywne(czy, wypadek_samochodowy).
 
-zdarzenie_to(zachrowanie) :-
+zdarzenie_to(zachorowanie) :-
 	pozytywne(czy, zachorowanie).
 
 zdarzenie_to(pogorszenie) :-
@@ -47,11 +60,11 @@ chory(nieprzytomny) :-
 
 chory(zagrozenie_zycia) :-
 	chory(nieprzytomy),
-	pozytywne(odczuwa, nietypwe_dolegliwosci).
+	pozytywne(odczuwa, nietypowe_dolegliwosci).
 
 chory(krawienie_podpajeczynowkowe) :-
-	pozytywne(odczuwa, bol_glowy)
-	pozytywne(odczuwa, najsilenieszy_bol_glowy_w_zyciu).
+	pozytywne(odczuwa, bol_glowy),
+	pozytywne(odczuwa, najsilniejszy_bol_glowy_w_zyciu).
 
 problem_to(zatrzymanie_krazenia) :-
 	chory(nieprzytomny),
@@ -66,23 +79,23 @@ problem_to(wstrzasienie_mozgu) :-
 problem_to(k2) :-
 	pozytywne(odczuwa, bol_glowy), 
 	negatywne(doznal, urazu), 
-	negatywne(ma, zabuzenia_swiadomosci), 
-	negatywne(ma, zabuzenia_motoryczne). 
+	negatywne(ma, zaburzenia_swiadomosci), 
+	negatywne(ma, zaburzenia_motoryczne). 
 	
 problem_to(krwiak) :-
 	pozytywne(odczuwa, bol_glowy), 
 	pozytywne(doznal, urazu), 
 	pozytywne(odczuwa, ostry_bol), 
-	pozytywne(ma, zabuzenia_swiadomosci), 
-	pozytywne(ma, zabuzenia_motoryczne). 
+	pozytywne(ma, zaburzenia_swiadomosci), 
+	pozytywne(ma, zaburzenia_motoryczne). 
 
 problem_to(zawal) :-
 	negatywne(doznal, urazu), 
 	pozytywne(odczuwa, bol_klatki), 
-	pozytywne(odczuwa, bol_promieniujacy)
-	pozytywne(oddczuwa, dusznosci)
+	pozytywne(odczuwa, bol_promieniujacy),
+	pozytywne(odczuwa, dusznosci).
 	
-
+	
 problem_to(nadcisienie_tetnicze) :-
 	negatywne(doznal, urazu), 
 	pozytywne(odczuwa, bol_glowy). 
@@ -99,10 +112,45 @@ problem_to(zapalenie_opon) :-
 	negatywne(doznal, urazu), 
 	pozytywne(bol_glowy). 
 	
-problem_to(krwiak_podtwardowkowy) :-
-	pozytywne(doznal, urazu), 
+problem_to(hipoglikemia) :-
+	pozytywne(ma, cukrzyce),
+	pozytywne(odczuwa, oslabienie),
+	pozytywne(odczuwa, nudnosci),
+	pozytywne(odczuwa, dreszcze),
+	pozytywne(ma, wilgotna_blada_skore).
 	
+problem_to(ostre_zapalenie_wyrostka) :-
+	pozytywne(odczuwa, bol_brzucha),
+	pozytywne(odczuwa, ostry_bol),
+	pozytywne(czuje_bol_umiejscowiony, po_prawej_stronie),
+	pozytywne(czuje_bol_trwajacy_przez, kilka_godzin),
+	pozytywne(ma, goraczke).
+
+problem_to(tetniak_aorty) :-
+	pozytywne(odczuwa, bol_brzucha),
+	pozytywne(odczuwa, ostry_bol),
+	pozytywne(czuje_bol_umiejscowiony, w_okolicy_krzyzowej),
+	pozytywne(ma, ponad_50_lat).
 	
+problem_to(niedroznosc_jelit) :-
+	pozytywne(odczuwa, bol_brzucha),
+	pozytywne(ma, wymioty),
+	pozytywne(ma_wymioty, o_zolto_zielonej_tresci).
+	
+problem_to(niezdiagnozowane_dolegliwosci_zoladkowe) :-
+	pozytywne(odczuwa, bol_brzucha),
+	not(problem_to(ostre_zapalenie_wyrostka)),
+	not(problem_to(tetniak_aorty)),
+	not(problem_to(niedroznosc_jelit)),
+	negatywne(doznal, urazu).
+
+% ogolne kryteria po wieku pacjenta	
+problem_to(zawal) :-
+	problem_to(niezdiagnozowane_dolegliwosci_zoladkowe),
+	(pozytywne(jest, mezczyzna_po_35_roku_zycia);
+	pozytywne(jest, kobieta_po_12_roku_zycia)),
+	pozytywne(odczuwa, bol_klatki).
+
 podlega(ppm) :-
 	zdarzenie_to(wypadek_samochodowy).
 
@@ -111,7 +159,6 @@ podlega(ppm) :-
 
 podlega(ppm) :-
 	zdarzenie_to(pogorszenie).	
-	
 	
 pozytywne(X, Y) :-
 	xpozytywne(X, Y), !.
@@ -132,7 +179,6 @@ pytaj(X, Y, tak) :-
 	readln([Replay]),
 	pamietaj(X, Y, Replay),
 	odpowiedz(Replay, tak).
-
 
 pytaj(X, Y, nie) :-
 	!, write('Czy chory '), write(X), write(" "), write(Y), write(' ? (t/n)\n'), 
