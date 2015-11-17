@@ -1,43 +1,50 @@
 :- module(pogotowie,[wykonaj/0]).
 
-:- dynamic([xpozytywne/2, xnegatywne/2]).
+:- dynamic([xpozytywne/2, xnegatywne/2, xczy/2]).
+
 
 procedura(nagly_stan_zagrozenia_zycia) :-
-	problem_to(zatrzymanie_krazenia);
-	problem_to(krwiak);
-	problem_to(zawal);
-	problem_to(tetniak_aorty).
+	problem_i_opis(zatrzymanie_krazenia);
+	problem_i_opis(krwiak);
+	problem_i_opis(zawal);
+    problem_i_opis(tetniak_aorty).
 
 procedura(stan_powazny) :-
-	podlega(ppm); 
-	problem_to(wstrzasienie_mozgu);
+	problem_i_opis(uraz_nogi);
+	problem_i_opis(uraz_reki);
+	problem_i_opis(wstrzasienie_mozgu);
 	problem_to(niedroznosc_jelit).
 
 procedura(stan_powazny) :-
-	problem_to(hipoglikemia),
+	problem_i_opis(hipoglikemia),
 	pozytywne(jest, nieprzytomny).
-	
-procedura(karetka_P) :-
-	problem_to(hipoglikemia),
-	negatywne(jest, nieprzytomny).
-		
-procedura(karetka_P) :-
-	problem_to(ostre_zapalenie_wyrostka);
-	problem_to(k2).
 
+problem_i_opis(Co) :-
+	problem_to(Co), !,
+	write("Problem to: "), write(Co), write("\n").
+
+% procedura(karetka_P).
 procedura(brak_karetki) :-
 	not(chory(zagrozenie_zycia)).
-	
+
+% procedura(consulting).
 procedura(policja) :-
 	zdarzenie_to(wypadek_samochodowy). 
 
-procedura(stan_powazny) :-
-	chory(nieprzytomny).
-	
-zdarzenie_to(wypadek_samochodowy) :-
-	pozytywne(czy, wypadek_samochodowy).
+% procerura(straz).
 
-zdarzenie_to(zachorowanie) :-
+zdarzenie_to(wypadek_samochodowy) :-
+	pozytywne(bral_udzial_w, wypadek_samochodowy).
+
+problem_to(uraz_nogi) :-
+	chory(doznal_urazu), !,
+	czy("Co zostalo rozsmarowane po drodze?", "noga", "noga/reka/wnetrzosci/glowa").
+
+problem_to(uraz_reki) :-
+	chory(doznal_urazu), !,
+	czy("Co zostalo rozsmarowane po drodze?", "reka", "noga/reka/wnetrzosci/glowa").
+
+zdarzenie_to(zachrowanie) :-
 	pozytywne(czy, zachorowanie).
 
 zdarzenie_to(pogorszenie) :-
@@ -45,13 +52,12 @@ zdarzenie_to(pogorszenie) :-
 
 
 zdarzenie_to(niemedyczne) :-
-	negatywne(czy, wypadek_samochodowy),
+	negatywne(bral_udzial_w, wypadek_samochodowy),
 	negatywne(czy, zachorowanie),
-	negatywne(czy, pogorszenie),
 	negatywne(czy, pogorszenie).
 
 chory(doznal_urazu) :-
-	zdarzenie_to(wypadek_samochodowy);
+	zdarzenie_to(wypadek_samochodowy),
 	pozytywne(doznal, urazu). 
 	
 chory(nieprzytomny) :-
@@ -72,53 +78,56 @@ problem_to(zatrzymanie_krazenia) :-
 
 problem_to(wstrzasienie_mozgu) :-
 	pozytywne(odczuwa, bol_glowy), 
-	pozytywne(doznal, urazu), 
+	pozytywne(doznal, urazu),
 	negatywne(odczuwa, ostry_bol), 
 	pozytywne(odczuwa, nudnosci). 
 	
 problem_to(k2) :-
 	pozytywne(odczuwa, bol_glowy), 
-	negatywne(doznal, urazu), 
-	negatywne(ma, zaburzenia_swiadomosci), 
-	negatywne(ma, zaburzenia_motoryczne). 
+	negatywne(doznal, urazu),
+	negatywne(ma, zaburzenia_swiadomosci),
+	negatywne(ma, zaburzenia_motoryczne).
 	
 problem_to(krwiak) :-
 	pozytywne(odczuwa, bol_glowy), 
-	pozytywne(doznal, urazu), 
+	pozytywne(doznal, urazu),
 	pozytywne(odczuwa, ostry_bol), 
-	pozytywne(ma, zaburzenia_swiadomosci), 
-	pozytywne(ma, zaburzenia_motoryczne). 
+	pozytywne(ma, zaburzenia_swiadomosci),
+	pozytywne(ma, zaburzenia_motoryczne).
 
 problem_to(zawal) :-
-	negatywne(doznal, urazu), 
+	negatywne(doznal, urazu),
 	pozytywne(odczuwa, bol_klatki), 
 	pozytywne(odczuwa, bol_promieniujacy),
 	pozytywne(odczuwa, dusznosci).
 	
-	
+
 problem_to(nadcisienie_tetnicze) :-
-	negatywne(doznal, urazu), 
+	negatywne(doznal, urazu),
 	pozytywne(odczuwa, bol_glowy). 
 	
 problem_to(zapalenie_zatok) :-
-	negatywne(doznal, urazu), 
+	negatywne(doznal, urazu),
 	pozytywne(odczuwa, bol_glowy).
 	
 problem_to(migrena) :-
-	negatywne(doznal, urazu), 
+	negatywne(doznal, urazu),
 	pozytywne(odczuwa, bol_glowy).
 	
 problem_to(zapalenie_opon) :-
-	negatywne(doznal, urazu), 
+	negatywne(doznal, urazu),
 	pozytywne(bol_glowy). 
-	
+
+problem_to(krwiak_podtwardowkowy) :-
+	chory(doznal_urazu),
+	pozytywne(jest, stary).
 problem_to(hipoglikemia) :-
 	pozytywne(ma, cukrzyce),
 	pozytywne(odczuwa, oslabienie),
 	pozytywne(odczuwa, nudnosci),
 	pozytywne(odczuwa, dreszcze),
 	pozytywne(ma, wilgotna_blada_skore).
-	
+
 problem_to(ostre_zapalenie_wyrostka) :-
 	pozytywne(odczuwa, bol_brzucha),
 	pozytywne(odczuwa, ostry_bol),
@@ -131,12 +140,12 @@ problem_to(tetniak_aorty) :-
 	pozytywne(odczuwa, ostry_bol),
 	pozytywne(czuje_bol_umiejscowiony, w_okolicy_krzyzowej),
 	pozytywne(ma, ponad_50_lat).
-	
+
 problem_to(niedroznosc_jelit) :-
 	pozytywne(odczuwa, bol_brzucha),
 	pozytywne(ma, wymioty),
 	pozytywne(ma_wymioty, o_zolto_zielonej_tresci).
-	
+
 problem_to(niezdiagnozowane_dolegliwosci_zoladkowe) :-
 	pozytywne(odczuwa, bol_brzucha),
 	not(problem_to(ostre_zapalenie_wyrostka)),
@@ -144,7 +153,7 @@ problem_to(niezdiagnozowane_dolegliwosci_zoladkowe) :-
 	not(problem_to(niedroznosc_jelit)),
 	negatywne(doznal, urazu).
 
-% ogolne kryteria po wieku pacjenta	
+% ogolne kryteria po wieku pacjenta
 problem_to(zawal) :-
 	problem_to(niezdiagnozowane_dolegliwosci_zoladkowe),
 	(pozytywne(jest, mezczyzna_po_35_roku_zycia);
@@ -159,7 +168,22 @@ podlega(ppm) :-
 
 podlega(ppm) :-
 	zdarzenie_to(pogorszenie).	
-	
+
+czy(Pytanie, Oczekiwana, Mozliwosci) :-
+	zapytano_wczesniej(Pytanie, Oczekiwana, _); ! ,
+	pytaj_tekst(Pytanie, Oczekiwana, Mozliwosci).
+
+zapytano_wczesniej(Pytanie, Oczekiwana, PoprzedniaOdpowiedz) :-
+	xczy(Pytanie, PoprzedniaOdpowiedz),
+	sub_string(PoprzedniaOdpowiedz, 0, _, _, Oczekiwana).
+
+pytaj_tekst(Pytanie, Oczekiwana, Mozliwosci) :-
+	!, write(Pytanie), write(" ("), write(Mozliwosci), write(")\n"),
+	readln([Replay]),
+	assertz(xczy(Pytanie, Replay)),
+	sub_string(Replay, 0, _, _, Oczekiwana).
+
+
 pozytywne(X, Y) :-
 	xpozytywne(X, Y), !.
 
@@ -204,6 +228,7 @@ wyczysc_fakty :-
 	write('\n\nNacisnij enter aby zakonczyc\n'),
 	retractall(xpozytywne(_, _)),
 	retractall(xnegatywne(_, _)),
+	retractall(xczy(_, _)),
 	readln(_).
 
 wykonaj :-
@@ -214,25 +239,3 @@ wykonaj :-
 wykonaj :-
 	write('\nNie jestem w stanie odgadnac, '),
 	write('jakie zwierze masz na mysli.\n\n'), wyczysc_fakty.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
