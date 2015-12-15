@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Aa" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="Node3">
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="Node1">
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="chory_jadl_nieswiezy_posilek">
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Node4" target="true">
+			<state id="TAK" />
+			<state id="NIE" />
+			<parents>Node3 Node1 chory_jadl_nieswiezy_posilek</parents>
+			<probabilities>0.99 0.01 0.8 0.2 0.9 0.1 0.7 0.3 0.9 0.1 0.6 0.4 0.7 0.3 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Node2">
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.2 0.8</probabilities>
+		</cpt>
+		<cpt id="wystapil_uraz_glowy">
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="Node6" target="true">
+			<state id="TAK" />
+			<state id="NIE" />
+			<parents>Node3 Node2 wystapil_uraz_glowy</parents>
+			<probabilities>0.99 0.01 0.01 0.99 0.9 0.1 1 0 0.6 0.4 1 0 0.1 0.9 1 0</probabilities>
+		</cpt>
+		<cpt id="migrena" target="true">
+			<state id="TAK" />
+			<state id="NIE" />
+			<parents>Node3 Node2</parents>
+			<probabilities>0.99 0.01 0 1 0.5 0.5 0 1</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.5590.0" name="Alarm" faultnameformat="nodestate">
+			<node id="Node1">
+				<name>ból brzucha</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>247 36 332 74</position>
+			</node>
+			<node id="Node2">
+				<name>ból glowy</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>351 43 438 79</position>
+			</node>
+			<node id="Node3">
+				<name>nudnosci</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>146 40 226 78</position>
+			</node>
+			<node id="Node4">
+				<name>zatrucie </name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>25 479 114 526</position>
+			</node>
+			<node id="chory_jadl_nieswiezy_posilek">
+				<name>chory jadl nieswiezy posilek</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>6 30 127 97</position>
+			</node>
+			<node id="Node6">
+				<name>wstrzasnienie mozgu</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>129 475 220 531</position>
+			</node>
+			<node id="wystapil_uraz_glowy">
+				<name>wystapil uraz glowy</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>445 43 550 92</position>
+			</node>
+			<node id="migrena">
+				<name>migrena</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>228 482 303 529</position>
+			</node>
+		</genie>
+	</extensions>
+</smile>
