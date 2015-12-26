@@ -38,71 +38,352 @@
 			<parents>Node3 Node2 wystapil_uraz_glowy</parents>
 			<probabilities>0.99 0.01 0.01 0.99 0.9 0.1 1 0 0.6 0.4 1 0 0.1 0.9 1 0</probabilities>
 		</cpt>
-		<cpt id="migrena" target="true">
-			<state id="TAK" />
-			<state id="NIE" />
-			<parents>Node3 Node2</parents>
-			<probabilities>0.99 0.01 0 1 0.5 0.5 0 1</probabilities>
+		<cpt id="nieprzytomny">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="nie_oddycha">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="zatrzymanie_krazenia">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>nieprzytomny nie_oddycha</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="ostry_bol">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node1 Node2</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="wiek__50">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="tetniak_aorty">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node1 ostry_bol wiek__50</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="umiejscowiony_po_prawej_stronie">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node1</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="bol_trwajacy_kilka_godzin">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node1</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="goraczka">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="ostre_zapalenie_wyrostka">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ostry_bol Node1 umiejscowiony_po_prawej_stronie bol_trwajacy_kilka_godzin goraczka</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="krwiak_podtwardowkowy">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>wystapil_uraz_glowy</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="zapalenie_opon">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node2</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="procedura_K1___karetka_S__specjalistyczna_">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>zatrzymanie_krazenia tetniak_aorty ostre_zapalenie_wyrostka krwiak_podtwardowkowy zapalenie_opon</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="ma_cukrzyce">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="dreszcze">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="wilgotna_blada_skora">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="oslabienie">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="hipoglikemia_">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>ma_cukrzyce dreszcze wilgotna_blada_skora oslabienie goraczka</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="wymioty">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="wymioty_o_zolto_zielonej_tresci">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>wymioty</parents>
+			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="niedroznosc_jelit">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>wymioty_o_zolto_zielonej_tresci Node1</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="procedura_K2___karetka_P__podstawowa_">
+			<state id="State0" />
+			<state id="State1" />
+			<parents>Node6 Node4 hipoglikemia_ niedroznosc_jelit</parents>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+		</cpt>
+		<cpt id="zaburzenia_swiadomosci">
+			<state id="State0" />
+			<state id="State1" />
+			<probabilities>0.5 0.5</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.5590.0" name="Alarm" faultnameformat="nodestate">
 			<node id="Node1">
 				<name>ból brzucha</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
+				<interior color="ffff99" />
+				<outline color="000000" />
 				<font color="000000" name="Arial" size="8" />
-				<position>247 36 332 74</position>
+				<position>267 36 352 74</position>
 			</node>
 			<node id="Node2">
 				<name>ból glowy</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
+				<interior color="ffff99" />
+				<outline color="000000" />
 				<font color="000000" name="Arial" size="8" />
-				<position>351 43 438 79</position>
+				<position>363 44 450 80</position>
 			</node>
 			<node id="Node3">
 				<name>nudnosci</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
+				<interior color="ffff99" />
+				<outline color="000000" />
 				<font color="000000" name="Arial" size="8" />
-				<position>146 40 226 78</position>
+				<position>166 40 246 78</position>
 			</node>
 			<node id="Node4">
 				<name>zatrucie </name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>25 479 114 526</position>
+				<position>13 325 102 372</position>
 			</node>
 			<node id="chory_jadl_nieswiezy_posilek">
 				<name>chory jadl nieswiezy posilek</name>
-				<interior color="e5f6f7" />
-				<outline color="000080" />
+				<interior color="ffff99" />
+				<outline color="333300" />
 				<font color="000000" name="Arial" size="8" />
-				<position>6 30 127 97</position>
+				<position>26 30 147 97</position>
 			</node>
 			<node id="Node6">
 				<name>wstrzasnienie mozgu</name>
-				<interior color="e5f6f7" />
+				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>129 475 220 531</position>
+				<position>19 409 110 465</position>
 			</node>
 			<node id="wystapil_uraz_glowy">
 				<name>wystapil uraz glowy</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>465 43 570 92</position>
+			</node>
+			<node id="procedura_K1___karetka_S__specjalistyczna_">
+				<name>procedura K1 - karetka S (specjalistyczna)</name>
+				<interior color="ff0000" />
+				<outline color="000080" />
+				<font color="333300" name="Arial" size="8" />
+				<position>57 622 173 694</position>
+			</node>
+			<node id="procedura_K2___karetka_P__podstawowa_">
+				<name>procedura K2 - karetka P (podstawowa)</name>
+				<interior color="ff0000" />
+				<outline color="000080" />
+				<font color="333300" name="Arial" size="8" />
+				<position>219 619 328 687</position>
+			</node>
+			<node id="wymioty">
+				<name>wymioty</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>589 51 645 86</position>
+			</node>
+			<node id="niedroznosc_jelit">
+				<name>niedroznosc jelit</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>167 378 256 433</position>
+			</node>
+			<node id="wymioty_o_zolto_zielonej_tresci">
+				<name>wymioty o zolto zielonej tresci</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>445 43 550 92</position>
+				<position>475 199 577 262</position>
 			</node>
-			<node id="migrena">
-				<name>migrena</name>
+			<node id="tetniak_aorty">
+				<name>tetniak aorty</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>264 401 335 445</position>
+			</node>
+			<node id="ostry_bol">
+				<name>ostry bol</name>
 				<interior color="e5f6f7" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>228 482 303 529</position>
+				<position>185 194 242 229</position>
 			</node>
+			<node id="wiek__50">
+				<name>wiek &gt; 50</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>664 42 723 78</position>
+			</node>
+			<node id="ostre_zapalenie_wyrostka">
+				<name>ostre zapalenie wyrostka</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>378 409 470 466</position>
+			</node>
+			<node id="umiejscowiony_po_prawej_stronie">
+				<name>umiejscowiony po prawej stronie</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>634 191 743 259</position>
+			</node>
+			<node id="bol_trwajacy_kilka_godzin">
+				<name>bol trwajacy kilka godzin</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>364 181 461 241</position>
+			</node>
+			<node id="goraczka">
+				<name>goraczka</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>740 49 799 85</position>
+			</node>
+			<node id="hipoglikemia_">
+				<name>hipoglikemia </name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>527 383 600 428</position>
+			</node>
+			<node id="ma_cukrzyce">
+				<name>ma cukrzyce</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>631 100 706 146</position>
+			</node>
+			<node id="oslabienie">
+				<name>oslabienie</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>808 52 870 90</position>
+			</node>
+			<node id="dreszcze">
+				<name>dreszcze</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>840 116 901 154</position>
+			</node>
+			<node id="wilgotna_blada_skora">
+				<name>wilgotna blada skora</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>744 110 826 161</position>
+			</node>
+			<node id="krwiak_podtwardowkowy">
+				<name>krwiak podtwardowkowy</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>658 367 768 435</position>
+			</node>
+			<node id="zapalenie_opon">
+				<name>zapalenie opon</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>847 382 931 434</position>
+			</node>
+			<node id="zaburzenia_swiadomosci">
+				<name>zaburzenia swiadomosci</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>881 26 969 81</position>
+			</node>
+			<node id="nieprzytomny">
+				<name>nieprzytomny</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>900 88 976 135</position>
+			</node>
+			<node id="zatrzymanie_krazenia">
+				<name>zatrzymanie krazenia</name>
+				<interior color="99cc00" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>571 426 654 477</position>
+			</node>
+			<node id="nie_oddycha">
+				<name>nie oddycha</name>
+				<interior color="ffff99" />
+				<outline color="000000" />
+				<font color="000000" name="Arial" size="8" />
+				<position>969 57 1040 101</position>
+			</node>
+			<textbox>
+				<caption>zólte - symptomy\nniebieskie - sprecyzowane symptomy\nzielone - fakty posrednie\nczerwone - hipotezy</caption>
+				<font color="333300" name="Arial" size="12" bold="true" />
+				<position>641 606 927 682</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>
