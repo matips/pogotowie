@@ -30,7 +30,7 @@
 		<cpt id="wystapil_uraz_glowy">
 			<state id="TAK" />
 			<state id="NIE" />
-			<probabilities>0.5 0.5</probabilities>
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="Node6" target="true">
 			<state id="TAK" />
@@ -39,132 +39,132 @@
 			<probabilities>0.99 0.01 0.01 0.99 0.9 0.1 1 0 0.6 0.4 1 0 0.1 0.9 1 0</probabilities>
 		</cpt>
 		<cpt id="nieprzytomny">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="nie_oddycha">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="zatrzymanie_krazenia">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>nieprzytomny nie_oddycha</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>1 0 0 1 0 1 0 1</probabilities>
 		</cpt>
 		<cpt id="ostry_bol">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node1 Node2</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0 1</probabilities>
 		</cpt>
 		<cpt id="wiek__50">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.7 0.3</probabilities>
 		</cpt>
 		<cpt id="tetniak_aorty">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node1 ostry_bol wiek__50</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>1 0 0.8 0.2 0.4 0.6 0.01 0.99 0 1 0 1 0 1 0 1</probabilities>
 		</cpt>
 		<cpt id="umiejscowiony_po_prawej_stronie">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node1</parents>
-			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>0.5 0.5 0 1</probabilities>
 		</cpt>
 		<cpt id="bol_trwajacy_kilka_godzin">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node1</parents>
-			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>0.5 0.5 0 1</probabilities>
 		</cpt>
 		<cpt id="goraczka">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.2 0.8</probabilities>
 		</cpt>
 		<cpt id="ostre_zapalenie_wyrostka">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>ostry_bol Node1 umiejscowiony_po_prawej_stronie bol_trwajacy_kilka_godzin goraczka</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>1 0 0.85 0.15 0.7 0.3 0.7 0.3 0.6 0.4 0.6 0.4 0.6 0.4 0.4 0.6 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0.8 0.2 0.8 0.2 0.8 0.2 0.7 0.3 0.7 0.3 0.7 0.3 0.7 0.3 0.3 0.7 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</probabilities>
 		</cpt>
 		<cpt id="krwiak_podtwardowkowy">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>wystapil_uraz_glowy</parents>
 			<probabilities>0.5 0.5 0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="zapalenie_opon">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node2</parents>
 			<probabilities>0.5 0.5 0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="procedura_K1___karetka_S__specjalistyczna_">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>zatrzymanie_krazenia tetniak_aorty ostre_zapalenie_wyrostka krwiak_podtwardowkowy zapalenie_opon</parents>
 			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="ma_cukrzyce">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="dreszcze">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="wilgotna_blada_skora">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="oslabienie">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="hipoglikemia_">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>ma_cukrzyce dreszcze wilgotna_blada_skora oslabienie goraczka</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>1 0 0.9 0.09999999999999998 0.9 0.09999999999999998 0.85 0.15 0.9 0.09999999999999998 0.85 0.15 0.85 0.15 0.7 0.3 0.9 0.09999999999999998 0.85 0.15 0.9 0.09999999999999998 0.6 0.4 0.6 0.4 0.6 0.4 0.01088031651829871 0.9891196834817013 0.01 0.99 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</probabilities>
 		</cpt>
 		<cpt id="wymioty">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.1 0.9</probabilities>
 		</cpt>
 		<cpt id="wymioty_o_zolto_zielonej_tresci">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>wymioty</parents>
-			<probabilities>0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>0.2 0.8 0 1</probabilities>
 		</cpt>
 		<cpt id="niedroznosc_jelit">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>wymioty_o_zolto_zielonej_tresci Node1</parents>
-			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
+			<probabilities>1 0 0.7 0.3 0.05 0.95 0 1</probabilities>
 		</cpt>
 		<cpt id="procedura_K2___karetka_P__podstawowa_">
-			<state id="State0" />
-			<state id="State1" />
+			<state id="TAK" />
+			<state id="NIE" />
 			<parents>Node6 Node4 hipoglikemia_ niedroznosc_jelit</parents>
 			<probabilities>0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5</probabilities>
 		</cpt>
 		<cpt id="zaburzenia_swiadomosci">
-			<state id="State0" />
-			<state id="State1" />
-			<probabilities>0.5 0.5</probabilities>
+			<state id="TAK" />
+			<state id="NIE" />
+			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -230,7 +230,7 @@
 				<interior color="ff0000" />
 				<outline color="000080" />
 				<font color="333300" name="Arial" size="8" />
-				<position>219 619 328 687</position>
+				<position>220 621 329 689</position>
 			</node>
 			<node id="wymioty">
 				<name>wymioty</name>
@@ -258,7 +258,7 @@
 				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>264 401 335 445</position>
+				<position>277 401 348 445</position>
 			</node>
 			<node id="ostry_bol">
 				<name>ostry bol</name>
@@ -349,7 +349,7 @@
 				<interior color="99cc00" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>847 382 931 434</position>
+				<position>810 388 894 440</position>
 			</node>
 			<node id="zaburzenia_swiadomosci">
 				<name>zaburzenia swiadomosci</name>
