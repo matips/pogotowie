@@ -38,11 +38,11 @@ zdarzenie_to(wypadek_samochodowy) :-
 
 problem_to(uraz_nogi) :-
 	chory(doznal_urazu), !,
-	czy("Co zostalo rozsmarowane po drodze?", "noga", "noga/reka/wnetrzosci/glowa").
+	czy("Jaka czesc ciala ulegla urazowi?", "noga", "noga/reka/wnetrzosci/glowa").
 
 problem_to(uraz_reki) :-
 	chory(doznal_urazu), !,
-	czy("Co zostalo rozsmarowane po drodze?", "reka", "noga/reka/wnetrzosci/glowa").
+	czy("Jaka czesc ciala ulegla urazowi?", "reka", "noga/reka/wnetrzosci/glowa").
 
 zdarzenie_to(zachrowanie) :-
 	pozytywne(czy, zachorowanie).
